@@ -8,6 +8,9 @@
 - npm packages
   - [gh-pages 创建gh-pages分支](https://github.com/tschaub/gh-pages#options)
 
+## Resources
+- [Marvel Homepage](https://www.marvel.com/)
+
 ## Usage
 
 ```
