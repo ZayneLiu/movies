@@ -8,28 +8,15 @@
 - npm packages
   - [gh-pages 创建gh-pages分支](https://github.com/tschaub/gh-pages#options)
 
+## Usage
 
-## Project setup
 ```
+// Project setup
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+// Compiles and hot-reloads for development
 npm run serve
-```
 
-### Compiles and minifies for production
-```
+// Compiles and minifies for production
 npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
