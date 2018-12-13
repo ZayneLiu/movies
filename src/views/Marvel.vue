@@ -19,6 +19,7 @@
     <HeroItem :hero="'Loki'"/>
     <HeroItem :hero="'Vision'"/>
     <HeroItem :hero="'ScarletWitch'"/>
+    <HeroItem :hero="'SpiderMan'"/>
     <HeroItem :hero="'Thanos'"/>
     <!-- <HeroItem :hero="'Thanos'"/> -->
     <!-- <HeroItemHover :hero="'CaptainOfAmerican'"/> -->
