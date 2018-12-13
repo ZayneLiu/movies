@@ -4,7 +4,9 @@
 - 鼠标分切图片算法待优化
 - clip-path 的深度应用
 
-
+## Stacks
+- npm packages
+  - [gh-pages 创建gh-pages分支](https://github.com/tschaub/gh-pages#options)
 
 
 ## Project setup
