@@ -1,19 +1,11 @@
 <template>
   <div :id="this.hero" class="heroes item">
-    <div
-      :id="this.hero+'Below'"
-      :style="outerStyle"
-      @mousemove.self="backgroundHover($event)"
-      @mouseout.self="resetWidth($event)"
-      class="heroes scroll"
-    >
-      <div
-        :id="this.hero+'Above'"
-        :style="innerStyle"
-        @mousemove.self="backgroundHover($event)"
-        @mouseout.self="resetWidth($event)"
-        class="heroes scroll"
-      ></div>
+    <div :id="this.hero+'Below'" :style="outerStyle" class="heroes scroll">
+      <!-- @mousemove.self="backgroundHover($event)"
+      @mouseout.self="resetWidth($event)"-->
+      <div :id="this.hero+'Above'" :style="innerStyle" class="heroes scroll"></div>
+      <!-- @mousemove.self="backgroundHover($event)"
+      @mouseout.self="resetWidth($event)"-->
     </div>
     <main>
       <!-- <div class="masthead__container masthead__container_playing-false">
@@ -39,9 +31,9 @@
   background-size: cover;
   background-position: center;
   height: 100vh;
-  :nth-child(1) {
-    clip-path: polygon(27% 0, 100% 0, 100% 100%, 27% 100%, 30% 50%);
-  }
+  // :nth-child(1) {
+  //   clip-path: polygon(27% 0, 100% 0, 100% 100%, 27% 100%, 30% 50%);
+  // }
 }
 
 main {
@@ -80,6 +72,7 @@ export default class HeroItem extends Vue {
   };
   private resetWidth(e: Event) {
     // console.log(e.srcElement ? e.srcElement.id : '');
+    // @ts-ignore-nextline
     const id = e.srcElement ? e.srcElement.id : '';
     const div = document.getElementById(id);
     if (div) {
@@ -96,6 +89,7 @@ export default class HeroItem extends Vue {
     // console.log(e.srcElement);
   }
   private backgroundHover(e: MouseEvent) {
+    // @ts-ignore-nextline
     const id = e.srcElement ? e.srcElement.id : '';
     // console.log(id);
     const div = document.getElementById(id);

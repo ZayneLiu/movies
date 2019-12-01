@@ -3,6 +3,8 @@
 ## Todos
 - 鼠标分切图片算法待优化
 - clip-path 的深度应用
+- CSS @keyframe
+- animation with scrolling
 
 ## Stacks
 - npm packages

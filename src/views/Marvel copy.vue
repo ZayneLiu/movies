@@ -1,9 +1,7 @@
 <template>
-  <div :style="containerHeight" class="marvel">
-    <!-- MASKS -->
-    <div :style="firstLogo" class="scroll fullpage" id="marvel_logo"></div>
-    <div :style="secondLogo" class="scroll fullpage" id="marvels_logo_inverse"></div>
-    <div :style="placholderForMasks"></div>
+  <div class="marvel" id="fullpage">
+    <div :style="scrollingEffects" class="scroll fullpage" id="marvels_logo_inverse"></div>
+    <div :style="RScrollingEffects" class="scroll fullpage" id="marvel_logo"></div>
 
     <div class="scroll fullpage" id="avengers_logo_inverse"></div>
     <div class="scroll fullpage" id="avengers_logo"></div>
@@ -12,6 +10,17 @@
 
     <div class="section" id="avengers_logo_inverse"></div>
     <div class="section" id="avengers_logo"></div>-->
+    <HeroItem :hero="'IornMan'" />
+    <HeroItem :hero="'CaptainOfAmerican'" />
+    <HeroItem :hero="'BlackWidow'" />
+    <HeroItem :hero="'Hulk'" />
+    <HeroItem :hero="'HawkEye'" />
+    <HeroItem :hero="'Thor'" />
+    <HeroItem :hero="'Loki'" />
+    <HeroItem :hero="'Vision'" />
+    <HeroItem :hero="'ScarletWitch'" />
+    <HeroItem :hero="'SpiderMan'" />
+    <HeroItem :hero="'Thanos'" />
     <!-- <HeroItem :hero="'Thanos'"/> -->
     <!-- <HeroItemHover :hero="'CaptainOfAmerican'"/> -->
   </div>
@@ -31,57 +40,29 @@ import Component from 'vue-class-component';
   },
   created() {
     // @ts-ignore
+    // console.log(this.scroll);
     window.addEventListener('scroll', (e) => {
       // @ts-ignore
       this.scroll = window.pageYOffset;
-      console
-        .log
-        // (window.pageYOffset - window.innerHeight) / window.innerHeight,
-        // this.scroll / window.innerHeight,
-        ();
     });
+    // console.log(this.$listeners);
   },
 })
 export default class Marvel extends Vue {
   public scroll: number = 0;
 
-  public get containerHeight() {
+  public get scrollingEffects() {
     return {
-      height: `${4 * window.innerHeight}px`,
+      // filter: `brightness(${this.scroll <= 500 ? 1 - this.scroll / 500 : 0})`,
+      opacity: `${this.scroll <= 500 ? 1 - this.scroll / 500 : 0}`,
     };
   }
-  public get fillupViewport() {
-    return {};
-  }
-
-  public get firstLogo() {
+  public get RScrollingEffects() {
     return {
-      opacity: `${
-        this.scroll <= 1.25 * window.innerHeight
-          ? 1 - this.scroll / window.innerHeight
-          : 0
-      }`,
+      // filter: `brightness(${this.scroll <= 500 ? 1 - this.scroll / 500 : 0})`,
+      opacity: `${this.scroll <= 500 ? 0 : (this.scroll - 500) / 500}`,
     };
   }
-  public get secondLogo() {
-    return {
-      opacity: `${this.scroll / window.innerHeight}`,
-      // visible: this.
-    };
-  }
-
-  public get placholderForMasks() {
-    return {
-      height: `${3.25 * window.innerHeight}px`,
-    };
-  }
-
-  // public get RScrollingEffects() {
-  //   return {
-  //     // filter: `brightness(${this.scroll <= 500 ? 1 - this.scroll / 500 : 0})`,
-  //     opacity: `${this.scroll <= 500 ? 0 : (this.scroll - 500) / 500}`,
-  //   };
-  // }
 
   public scrollHandler(e: any) {
     console.log(window.pageYOffset);
@@ -100,14 +81,12 @@ export default class Marvel extends Vue {
   justify-content: center;
   overflow: visible;
   height: 100vh;
-  width: 100%;
   // border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-repeat: no-repeat;
   background-position: center;
-  // background-size: auto;
 }
 .scroll {
-  // background-attachment: fixed;
+  background-attachment: fixed;
   // position: static;
 }
 .marvel {
@@ -115,16 +94,12 @@ export default class Marvel extends Vue {
     background-image: url('../assets/MarvelLogoWithBorder.svg');
     background-color: #ed1d24;
     background-size: 70vw;
-    // height: 100vh;
-    z-index: 9999;
-    position: fixed;
+    position: sticky;
   }
   #marvels_logo_inverse {
     background-image: url('../assets/MarvelLogoWithBorderInverse.svg');
     background-size: 70vw;
     background-color: #ffffff;
-    position: fixed;
-    // position: fixed;
   }
   #avengers_logo {
     background-image: url('../assets/Avengers.svg');
