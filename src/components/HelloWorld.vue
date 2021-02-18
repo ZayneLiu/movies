@@ -1,98 +1,92 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,
-      <br>check out the
+  <h1>{{ msg }}</h1>
+
+  <label>
+    <input type="checkbox" v-model="useScriptSetup" /> Use
+    <code>&lt;script setup&gt;</code>
+  </label>
+  <label>
+    <input type="checkbox" v-model="useTsPlugin" /> Provide types for
+    <code>*.vue</code> imports
+  </label>
+
+  <p>
+    Recommended IDE setup:
+    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
+    +
+    <template v-if="!useScriptSetup">
       <a
-        href="https://cli.vuejs.org"
-        rel="noopener"
+        href="https://marketplace.visualstudio.com/items?itemName=octref.vetur"
         target="_blank"
-      >vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          rel="noopener"
-          target="_blank"
-        >babel</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript"
-          rel="noopener"
-          target="_blank"
-        >typescript</a>
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" rel="noopener" target="_blank">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" rel="noopener" target="_blank">Forum</a>
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" rel="noopener" target="_blank">Community Chat</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" rel="noopener" target="_blank">Twitter</a>
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" rel="noopener" target="_blank">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" rel="noopener" target="_blank">vue-router</a>
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" rel="noopener" target="_blank">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          rel="noopener"
-          target="_blank"
-        >vue-devtools</a>
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" rel="noopener" target="_blank">vue-loader</a>
-      </li>
-      <li>
-        <a href="https://github.com/vuejs/awesome-vue" rel="noopener" target="_blank">awesome-vue</a>
-      </li>
-    </ul>
-  </div>
+        >Vetur</a
+      >
+      +
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=znck.vue-language-features"
+        target="_blank"
+        >Vue DX</a
+      >
+    </template>
+    <template v-else>
+      <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+    </template>
+  </p>
+  <p v-if="useTsPlugin">
+    tsconfig setup:
+    <br />1. Install and add <code>@vuedx/typescript-plugin-vue</code> to
+    tsconfig plugins <br />2. Delete <code>src/shims-vue.d.ts</code> <br />3.
+    Open <code>src/main.ts</code> in VSCode <br />4. Open VSCode command input
+    <br />5. Search and run "Select TypeScript version" -> "Use workspace
+    version"
+  </p>
+  <button @click="count++">count is: {{ count }}</button>
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test hot module replacement.
+  </p>
+
+  <p>
+    <a href="https://vitejs.dev/guide/features.html" target="_blank"
+      >Vite Docs</a
+    >
+    |
+    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
+  </p>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
-}
+import { ref, defineComponent } from "vue";
+export default defineComponent({
+  name: "HelloWorld",
+  props: {
+    msg: {
+      type: String,
+      required: true,
+    },
+  },
+  setup: () => {
+    const count = ref(0);
+    const useScriptSetup = ref(false);
+    const useTsPlugin = ref(false);
+    return { count, useScriptSetup, useTsPlugin };
+  },
+});
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
+<style scoped>
+a {
+  color: #42b983;
+}
+
+label {
+  margin: 0 0.5em;
+  font-weight: bold;
+}
+
+code {
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #304455;
+}
 </style>
