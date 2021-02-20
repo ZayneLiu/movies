@@ -1,6 +1,7 @@
 <template>
   <div class="marvel">
     <CoverPageCircle />
+    <CoverPageGrow />
   </div>
 </template>
 
@@ -35,11 +36,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CoverPageCircle from "../components/CoverPageCircle.vue";
+import CoverPageGrow from "../components/CoverPageGrow.vue";
 
 export default defineComponent({
   name: "Marvel",
   components: {
     CoverPageCircle,
+    CoverPageGrow,
   },
   props: {},
   setup: (props) => {},
