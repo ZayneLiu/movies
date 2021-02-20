@@ -14,10 +14,11 @@ window.addEventListener(
   () => {
     document.body.style.setProperty(
       "--scroll",
-      (window.pageYOffset / window.innerHeight).toFixed(3).toString()
+      ((window.pageYOffset / window.innerHeight) % 2).toPrecision(2).toString()
     );
-    console.log("offset", window.pageYOffset / window.innerHeight);
-    console.log(window.innerHeight);
+    // TODO: might change this to `% 3`
+    // console.log("offset", window.pageYOffset / window.innerHeight);
+    // console.log("window.innerHeight",window.innerHeight);
   },
   false
 );
@@ -38,7 +39,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* height: 100vh; */
+  height: fit-content;
   /* margin-top: 60px; */
 }
 </style>
